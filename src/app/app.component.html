@@ -1,5 +1,38 @@
-<style lang="scss"></style>
+<style lang="scss">
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ingredient {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 2px;
+    margin-bottom: 1rem;
+    background-color: beige;
+    width: 400px;
+    word-wrap: break-word; /* Fix typo here */
+  }
+  
+  .element {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+</style>
 
 <main>
-  {{ title }}
+  <div class="element">
+    @for(ingredient of ingredients; track ingredient){
+    @if(ingredient.strDescription){
+    <div class="ingredient">
+      <h2>{{ ingredient.strIngredient }}</h2>
+      <p>{{ ingredient.strDescription }}</p>
+    </div>
+    } }
+  </div>
 </main>
