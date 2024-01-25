@@ -1,37 +1,31 @@
-<style lang="scss">
-  main {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-  }
+<style lang="scss"></style>
 
-  .ingredient {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 1rem;
-    margin: 2px;
-    margin-bottom: 1rem;
-    background-color: beige;
-    width: 400px;
-    word-wrap: break-word; /* Fix typo here */
-  }
-  
-  .element {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+<main class="flex flex-wrap flex-col justify-center pb-2">
+  <header class="bg-gray-500">
+    <h1 class="text-4xl text-start font-bold mb-2 m-2 uppercase">
+      Ingredients
+    </h1>
+  </header>
+  <!-- composant gérant la pagination -->
+  <mat-paginator
+    [length]="ingredients.length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]" 
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
 
-</style>
-
-<main>
-  <div class="element">
-    @for(ingredient of ingredients; track ingredient){
+  <!-- elements affichés -->
+  <div class="flex flex-wrap justify-center">
+    @for(ingredient of displayedData; track ingredient){
     @if(ingredient.strDescription){
-    <div class="ingredient">
-      <h2>{{ ingredient.strIngredient }}</h2>
-      <p>{{ ingredient.strDescription }}</p>
+    <div
+      class="border-1 border-solid shadow-md bg-[#def1ee] rounded-sm m-2 mb-1 p-3 w-80 text-wrap"
+    >
+      <h2 class="font-bold text-2xl px-2 shadow-md mb-2 bg-orange-200">
+        {{ ingredient.strIngredient }}
+      </h2>
+      <p class="px-1">{{ ingredient.strDescription }}</p>
     </div>
     } }
   </div>
